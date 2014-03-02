@@ -24,23 +24,20 @@ import HTMLParser
 import logging
 # Import additional logging handlers
 import logging.handlers
-
-#def getURL():
-#	"""Gets a URL from RAW INPUT and prints it"""
-#	url = raw_input("Feed me a URL: ")
-#	print "%s" % url
-#	"""Take the same URL and get the headers"""
-#	URLheaders = urllib.urlopen(url)
-#	print "%s" % URLheaders
-
-# getURL()
+# Import a nifty HTML parser
+from BeautifulSoup import BeautifulSoup
+#from util.BeautifulSoup import UnicodeDammit
 
 def getPage():
+	"""Gets a URL from RAW INPUT and reads it"""
 	url = raw_input("Feed me a URL: ")
 	req = urllib2.Request(url)
 	response = urllib2.urlopen(req)
 	return response.read()
  
+# Extract the title from the page and print it
 if __name__ == "__main__":
 	namesPage = getPage()
-	print namesPage
+	# print namesPage
+	titlePage = BeautifulSoup(namesPage)
+	print "%s" % titlePage.title
