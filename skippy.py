@@ -37,7 +37,5 @@ def getPage():
  
 # Extract the title from the page and print it
 if __name__ == "__main__":
-	namesPage = getPage()
-	# print namesPage
-	titlePage = BeautifulSoup(namesPage)
+	titlePage = BeautifulSoup(getPage())
 	print "%s" % titlePage.title
