@@ -28,6 +28,10 @@ import logging.handlers
 from BeautifulSoup import BeautifulSoup
 #from util.BeautifulSoup import UnicodeDammit
 
+# Have the bot join IRC
+# Read the channel for URLS
+# Feed the URLs into the below functions
+
 def getPage():
 	"""Gets a URL from RAW INPUT and reads it"""
 	url = raw_input("Feed me a URL: ")
