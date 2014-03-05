@@ -26,7 +26,7 @@ import logging
 import logging.handlers
 # Import a nifty HTML parser
 from BeautifulSoup import BeautifulSoup
-#from util.BeautifulSoup import UnicodeDammit
+from BeautifulSoup import UnicodeDammit
 # Import regular expression capabilities
 import re
 
@@ -53,7 +53,7 @@ def hello(): # This function responds to a user that inputs "Hello Mybot"
   ircsock.send("PRIVMSG "+ channel +" :Hello!\n")
 
 def getPage(url):
-	"""Gets a URL from RAW INPUT and reads it"""
+	"""Gets a URL from IRC reads it"""
 	req = urllib2.Request(url)
 	response = urllib2.urlopen(req)
 	return response.read()
@@ -83,7 +83,7 @@ while 1: # Be careful with these! it might send you to an infinite loop
 	if len(url) > 0:
 		titlePage = BeautifulSoup(getPage(url[0]))
 		for  child in titlePage.title:
-			sendmsg(channel, child)
+			sendmsg(channel, child.encode("utf-8"))
 
 	if ircmsg.find(":Hello "+ botnick) != -1: # If we can find "Hello Mybot" it will call the function hello()
 		hello()
