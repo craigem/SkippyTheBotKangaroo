@@ -83,7 +83,7 @@ while 1: # Be careful with these! it might send you to an infinite loop
 	if len(url) > 0:
 		titlePage = BeautifulSoup(getPage(url[0]))
 		for  child in titlePage.title:
-			sendmsg(channel, child.encode("utf-8"))
+			sendmsg(channel, "Title: "+ child.encode("utf-8"))
 
 	if ircmsg.find(":Hello "+ botnick) != -1: # If we can find "Hello Mybot" it will call the function hello()
 		hello()
