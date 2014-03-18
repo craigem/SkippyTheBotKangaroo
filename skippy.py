@@ -84,9 +84,13 @@ while 1: # Be careful with these! it might send you to an infinite loop
 	# if ircmsg.find ("http") != -1:
 	url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', ircmsg)
 	if len(url) > 0:
-		titlePage = BeautifulSoup(getPage(url[0]))
-		for  child in titlePage.title:
-			sendmsg(channel, "Title: "+ child.encode("utf-8"))
+		try:
+			titlePage = BeautifulSoup(getPage(url[0]))
+			for  child in titlePage.title:
+				sendmsg(channel, "Title: "+ child.encode("utf-8"))
+		except urllib2.HTTPError, e:
+			sendmsg(channel, "I can't find that page Sonny!")
+		
 
 	if ircmsg.find(":Hello "+ botnick) != -1: # If we can find "Hello Mybot" it will call the function hello()
 		hello()
