@@ -52,6 +52,9 @@ def joinchan(chan): # This function is used to join channels.
 def hello(): # This function responds to a user that inputs "Hello Mybot"
   ircsock.send("PRIVMSG "+ channel +" :Hello!\n")
 
+def whatsup(): # This function responds to a user that inputs "What's up Skip?"
+  ircsock.send("PRIVMSG "+ channel +" :Is that you Sonny?\n")
+
 def getPage(url):
 	"""Gets a URL from IRC reads it"""
 	req = urllib2.Request(url)
@@ -90,6 +93,10 @@ while 1: # Be careful with these! it might send you to an infinite loop
 
 	if ircmsg.find("PING :") != -1: # if the server pings us then we've got to respond!
 		ping()
+
+	if ircmsg.find(":What's up Skip?") != -1: # If we can find "What's Up Skip" it will call the function whatsup()
+		whatsup()
+
 # Read the channel for URLS
 # Feed the URLs into the below functions
 
